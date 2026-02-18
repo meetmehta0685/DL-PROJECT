@@ -9,7 +9,11 @@ import numpy as np
 from pathlib import Path
 from typing import Tuple, Dict, Optional
 from PIL import Image
-import cv2
+
+try:
+    import cv2
+except Exception:
+    cv2 = None
 
 from src.model import get_model
 from src.gradcam import GradCAM
@@ -142,6 +146,9 @@ class PneumoniaPredictor:
         # Generate Grad-CAM if requested
         if return_gradcam:
             try:
+                if cv2 is None:
+                    raise ImportError("OpenCV (cv2) is not available in this environment")
+
                 # Generate Grad-CAM heatmap
                 cam = self.gradcam.generate_cam(image_tensor, predicted_class, self.device)
                 
