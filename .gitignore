@@ -36,6 +36,9 @@ ENV/
 *.onnx
 checkpoints/
 models/
+!checkpoints/
+checkpoints/*
+!checkpoints/best_model_deploy.pt
 
 # Data
 data/

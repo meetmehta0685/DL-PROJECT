@@ -13,7 +13,7 @@ from src.inference import PneumoniaPredictor
 
 APP_TITLE = "🫁 Pneumonia Detection (X-Ray)"
 MODEL_OPTIONS = ["resnet18", "efficientnet_b0"]
-DEFAULT_MODEL_PATH = Path("checkpoints/best_model.pt")
+DEFAULT_MODEL_PATH = Path("checkpoints/best_model_deploy.pt")
 
 
 @st.cache_resource(show_spinner=False)
