@@ -27,8 +27,8 @@ SAMPLES = {
 	"Pneumonia (bacterial)": SAMPLES_DIR / "pneumonia_bacterial.jpeg",
 	"Pneumonia (viral)": SAMPLES_DIR / "pneumonia_viral.jpeg",
 }
-# Results of best_model_deploy.pt on the 624-image test split (report/.audit/evaluation.json)
-TEST_METRICS = {"Accuracy": "87.0%", "Precision": "89.3%", "Recall": "90.0%", "F1-score": "89.7%"}
+# Results of best_model_deploy.pt (trained with retrain.py) on the 624-image test split, threshold 0.5
+TEST_METRICS = {"Accuracy": "88.1%", "Precision": "84.2%", "Recall": "99.7%", "F1-score": "91.3%"}
 
 
 @st.cache_resource(show_spinner=False)
