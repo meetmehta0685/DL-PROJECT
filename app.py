@@ -32,8 +32,8 @@ TEST_METRICS = {"Accuracy": "88.1%", "Precision": "84.2%", "Recall": "99.7%", "F
 
 
 @st.cache_resource(show_spinner=False)
-def load_predictor(model_path: str, model_name: str) -> PneumoniaPredictor:
-	"""Load and cache predictor so model is not reloaded on every interaction."""
+def load_predictor(model_path: str, model_name: str, checkpoint_version: str) -> PneumoniaPredictor:
+	"""Load and cache predictor; checkpoint_version changes when the file does, so a new model is reloaded."""
 	return PneumoniaPredictor(model_path=model_path, model_name=model_name)
 
 
@@ -237,7 +237,8 @@ def main() -> None:
 		temp_image_path: Optional[str] = None
 		try:
 			with st.spinner("Loading model..."):
-				predictor = load_predictor(str(MODEL_PATH), MODEL_NAME)
+				stat = MODEL_PATH.stat()
+				predictor = load_predictor(str(MODEL_PATH), MODEL_NAME, f"{stat.st_size}-{stat.st_mtime_ns}")
 
 			if isinstance(source, Path):
 				image_path = str(source)
